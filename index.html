@@ -16,40 +16,45 @@
 
 <body>
 
-<h1>DengueMap GO - Monitoramento Inteligente</h1>
-
 <div class="container">
 
   <h1>DengueMap GO - Monitoramento Inteligente</h1>
 
+  <!-- CARDS -->
   <div class="dashboard">
     <div class="card">
       <h3>Total de Casos</h3>
-      <p id="total"></p>
+      <p id="total">0</p>
     </div>
 
     <div class="card">
       <h3>Setor Crítico</h3>
-      <p id="critico"></p>
+      <p id="critico">-</p>
     </div>
 
     <div class="card">
       <h3>Prioridade Vacinação</h3>
-      <p id="vacina"></p>
+      <p id="vacina">-</p>
     </div>
   </div>
 
+  <!-- GRÁFICO -->
   <div class="grafico-container">
     <h2>Relatório de Casos por Setor</h2>
     <canvas id="grafico"></canvas>
   </div>
 
+  <!-- FILTRO -->
   <div class="controls">
-    <select id="filtro"></select>
+    <select id="filtro">
+      <option>Selecione um setor</option>
+    </select>
   </div>
 
+  <!-- MAPA -->
   <div id="map"></div>
 
+  <!-- RANKING -->
   <h2 style="text-align:center;">Ranking de Setores</h2>
   <table id="ranking">
     <thead>
@@ -63,31 +68,6 @@
   </table>
 
 </div>
-
-</div>
-
-<h2>Relatório de Casos por Setor</h2>
-<canvas id="grafico"></canvas>
-
-<div class="controls">
-  <select id="filtro">
-    <option>Selecione um setor</option>
-  </select>
-</div>
-
-<div id="map"></div>
-
-<h2>Ranking de Setores</h2>
-<table id="ranking">
-  <thead>
-    <tr>
-      <th>Posição</th>
-      <th>Setor</th>
-      <th>Casos</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
 
 <script src="script.js"></script>
 
