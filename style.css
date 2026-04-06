@@ -38,3 +38,11 @@ th, td {
   border: 1px solid #ccc;
   padding: 10px;
 }
+
+canvas {
+  background: white;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 90%;
+  padding: 10px;
+}
