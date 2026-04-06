@@ -10,7 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- GOOGLE MAPS -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYe-b5lY0GTN57mmB8fO97D7x54b2FaDk&libraries=visualization&callback=init" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYe-b5lY0GTN57mmB8fO97D7x54b2FaDk&callback=init" async defer></script>
 
 </head>
 
@@ -18,59 +18,62 @@
 
 <div class="container">
 
-  <h1>DengueMap GO - Monitoramento Inteligente</h1>
+  <!-- TOPO -->
+  <div class="top-bar">
+    <h1>DengueMap GO - Monitoramento Inteligente</h1>
 
-  <!-- TOPO (CARDS + GRÁFICO LADO A LADO) -->
-  <div class="topo">
+    <div class="filtro-topo">
+      <label>Selecionar Setor:</label>
+      <select id="filtro"></select>
+    </div>
+  </div>
 
-    <!-- CARDS -->
+  <!-- GRID 3 COLUNAS -->
+  <div class="grid-3">
+
+    <!-- COLUNA 1 -->
     <div class="dashboard">
       <div class="card">
         <h3>Total de Casos</h3>
-        <p id="total">0</p>
+        <p id="total"></p>
       </div>
 
       <div class="card">
         <h3>Setor Crítico</h3>
-        <p id="critico">-</p>
+        <p id="critico"></p>
       </div>
 
       <div class="card">
         <h3>Prioridade Vacinação</h3>
-        <p id="vacina">-</p>
+        <p id="vacina"></p>
       </div>
     </div>
 
-    <!-- GRÁFICO -->
+    <!-- COLUNA 2 -->
     <div class="grafico-container">
       <h2>Relatório de Casos por Setor</h2>
       <canvas id="grafico"></canvas>
+
+      <h3>Ranking de Setores</h3>
+      <table id="ranking">
+        <thead>
+          <tr>
+            <th>Posição</th>
+            <th>Setor</th>
+            <th>Casos</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- COLUNA 3 -->
+    <div class="map-container">
+      <h2>Mapa de Focos</h2>
+      <div id="map"></div>
     </div>
 
   </div>
-
-  <!-- FILTRO -->
-  <div class="controls">
-    <select id="filtro">
-      <option>Selecione um setor</option>
-    </select>
-  </div>
-
-  <!-- MAPA -->
-  <div id="map"></div>
-
-  <!-- RANKING -->
-  <h2 style="text-align:center;">Ranking de Setores</h2>
-  <table id="ranking">
-    <thead>
-      <tr>
-        <th>Posição</th>
-        <th>Setor</th>
-        <th>Casos</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
 
 </div>
 
