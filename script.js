@@ -7,10 +7,15 @@ const dados = [
 ];
 
 let map;
-let heatmap;
-let markers = [];
 
-// FUNÇÃO PRINCIPAL (CHAMADA PELO GOOGLE)
+// 🔥 RODA SEMPRE (MESMO SEM MAPA)
+document.addEventListener("DOMContentLoaded", () => {
+  atualizarDashboard();
+  criarFiltro();
+  gerarRanking();
+});
+
+// 🔥 MAPA (SÓ SE GOOGLE CARREGAR)
 function init() {
 
   map = new google.maps.Map(document.getElementById("map"), {
@@ -18,10 +23,7 @@ function init() {
     center: { lat: -16.68, lng: -49.25 }
   });
 
-  atualizarDashboard();
-  criarFiltro();
   criarMapa();
-  gerarRanking();
 }
 
 // DASHBOARD
@@ -54,7 +56,7 @@ function criarFiltro() {
     let setor = select.value;
     let local = dados.find(d => d.setor === setor);
 
-    if (local) {
+    if (local && map) {
       map.setCenter({ lat: local.lat, lng: local.lng });
       map.setZoom(14);
     }
@@ -69,20 +71,18 @@ function criarMapa() {
     weight: d.casos
   }));
 
-  heatmap = new google.maps.visualization.HeatmapLayer({
+  const heatmap = new google.maps.visualization.HeatmapLayer({
     data: heatData
   });
 
   heatmap.setMap(map);
 
   dados.forEach(d => {
-    let marker = new google.maps.Marker({
+    new google.maps.Marker({
       position: { lat: d.lat, lng: d.lng },
       map,
       title: `${d.setor} - ${d.casos} casos`
     });
-
-    markers.push(marker);
   });
 }
 
