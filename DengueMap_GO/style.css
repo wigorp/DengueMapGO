@@ -1,0 +1,40 @@
+body {
+  font-family: Arial;
+  background: #f4f4f4;
+  text-align: center;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  width: 200px;
+}
+
+#map {
+  height: 500px;
+  width: 90%;
+  margin: 20px auto;
+}
+
+.controls {
+  margin: 10px;
+}
+
+table {
+  margin: auto;
+  border-collapse: collapse;
+  background: white;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
