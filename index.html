@@ -18,22 +18,51 @@
 
 <h1>DengueMap GO - Monitoramento Inteligente</h1>
 
-<div class="dashboard">
+<div class="container">
 
-  <div class="card">
-    <h3>Total de Casos</h3>
-    <p id="total">0</p>
+  <h1>DengueMap GO - Monitoramento Inteligente</h1>
+
+  <div class="dashboard">
+    <div class="card">
+      <h3>Total de Casos</h3>
+      <p id="total"></p>
+    </div>
+
+    <div class="card">
+      <h3>Setor Crítico</h3>
+      <p id="critico"></p>
+    </div>
+
+    <div class="card">
+      <h3>Prioridade Vacinação</h3>
+      <p id="vacina"></p>
+    </div>
   </div>
 
-  <div class="card">
-    <h3>Setor Crítico</h3>
-    <p id="critico">-</p>
+  <div class="grafico-container">
+    <h2>Relatório de Casos por Setor</h2>
+    <canvas id="grafico"></canvas>
   </div>
 
-  <div class="card">
-    <h3>Prioridade Vacinação</h3>
-    <p id="vacina">-</p>
+  <div class="controls">
+    <select id="filtro"></select>
   </div>
+
+  <div id="map"></div>
+
+  <h2 style="text-align:center;">Ranking de Setores</h2>
+  <table id="ranking">
+    <thead>
+      <tr>
+        <th>Posição</th>
+        <th>Setor</th>
+        <th>Casos</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+</div>
 
 </div>
 
