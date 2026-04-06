@@ -6,8 +6,11 @@
 
 <link rel="stylesheet" href="style.css">
 
-<!-- GOOGLE MAPS COM CALLBACK -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYe-b5lY0GTN57mmB8fO97D7x54b2FaDk&libraries=visualization&callback=init" async defer></script>
+<!-- CHART -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- GOOGLE MAPS -->
+<script src="https://maps.googleapis.com/maps/api/js?key=SUA_CHAVE_AQUI&libraries=visualization&callback=init" async defer></script>
 
 </head>
 
@@ -31,13 +34,11 @@
     <h3>Prioridade Vacinação</h3>
     <p id="vacina">-</p>
   </div>
-  <h2>Relatório de Casos por Setor</h2>
-
-<canvas id="grafico" width="400" height="150"></canvas>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </div>
+
+<h2>Relatório de Casos por Setor</h2>
+<canvas id="grafico"></canvas>
 
 <div class="controls">
   <select id="filtro">
