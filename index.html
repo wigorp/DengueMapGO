@@ -20,28 +20,33 @@
 
   <h1>DengueMap GO - Monitoramento Inteligente</h1>
 
-  <!-- CARDS -->
-  <div class="dashboard">
-    <div class="card">
-      <h3>Total de Casos</h3>
-      <p id="total">0</p>
+  <!-- TOPO (CARDS + GRÁFICO LADO A LADO) -->
+  <div class="topo">
+
+    <!-- CARDS -->
+    <div class="dashboard">
+      <div class="card">
+        <h3>Total de Casos</h3>
+        <p id="total">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Setor Crítico</h3>
+        <p id="critico">-</p>
+      </div>
+
+      <div class="card">
+        <h3>Prioridade Vacinação</h3>
+        <p id="vacina">-</p>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>Setor Crítico</h3>
-      <p id="critico">-</p>
+    <!-- GRÁFICO -->
+    <div class="grafico-container">
+      <h2>Relatório de Casos por Setor</h2>
+      <canvas id="grafico"></canvas>
     </div>
 
-    <div class="card">
-      <h3>Prioridade Vacinação</h3>
-      <p id="vacina">-</p>
-    </div>
-  </div>
-
-  <!-- GRÁFICO -->
-  <div class="grafico-container">
-    <h2>Relatório de Casos por Setor</h2>
-    <canvas id="grafico"></canvas>
   </div>
 
   <!-- FILTRO -->
