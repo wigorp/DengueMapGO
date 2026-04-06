@@ -1,38 +1,43 @@
 const dados = [
+  { setor: "Central", lat: -16.680, lng: -49.255, casos: 150 },
   { setor: "Campinas", lat: -16.675, lng: -49.300, casos: 120 },
   { setor: "Bueno", lat: -16.700, lng: -49.270, casos: 95 },
-  { setor: "Jardim América", lat: -16.720, lng: -49.290, casos: 60 },
-  { setor: "Central", lat: -16.680, lng: -49.255, casos: 150 },
-  { setor: "Pedro Ludovico", lat: -16.735, lng: -49.265, casos: 80 }
+  { setor: "Pedro Ludovico", lat: -16.735, lng: -49.265, casos: 80 },
+  { setor: "Jardim América", lat: -16.720, lng: -49.290, casos: 60 }
 ];
 
 let map;
 
-// 🔥 RODA SEMPRE (MESMO SEM MAPA)
+// INICIAR
 document.addEventListener("DOMContentLoaded", () => {
   atualizarDashboard();
   criarFiltro();
   gerarRanking();
+  criarGrafico();
 });
 
-// 🔥 MAPA (SÓ SE GOOGLE CARREGAR)
+// MAPA
 function init() {
-
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
     center: { lat: -16.68, lng: -49.25 }
   });
 
-  criarMapa();
+  dados.forEach(d => {
+    new google.maps.Marker({
+      position: { lat: d.lat, lng: d.lng },
+      map,
+      title: `${d.setor} - ${d.casos} casos`
+    });
+  });
 }
 
 // DASHBOARD
 function atualizarDashboard() {
-  let total = 0;
+  let total = dados.reduce((soma, d) => soma + d.casos, 0);
   let maior = dados[0];
 
   dados.forEach(d => {
-    total += d.casos;
     if (d.casos > maior.casos) maior = d;
   });
 
@@ -53,9 +58,7 @@ function criarFiltro() {
   });
 
   select.addEventListener("change", () => {
-    let setor = select.value;
-    let local = dados.find(d => d.setor === setor);
-
+    let local = dados.find(d => d.setor === select.value);
     if (local && map) {
       map.setCenter({ lat: local.lat, lng: local.lng });
       map.setZoom(14);
@@ -63,45 +66,34 @@ function criarFiltro() {
   });
 }
 
-// MAPA + HEATMAP
-function criarMapa() {
-
-  let heatData = dados.map(d => ({
-    location: new google.maps.LatLng(d.lat, d.lng),
-    weight: d.casos
-  }));
-
-  const heatmap = new google.maps.visualization.HeatmapLayer({
-    data: heatData
-  });
-
-  heatmap.setMap(map);
-
-  dados.forEach(d => {
-    new google.maps.Marker({
-      position: { lat: d.lat, lng: d.lng },
-      map,
-      title: `${d.setor} - ${d.casos} casos`
-    });
-  });
-}
-
 // RANKING
 function gerarRanking() {
-
-  let ordenado = [...dados].sort((a, b) => b.casos - a.casos);
-
   let tbody = document.querySelector("#ranking tbody");
   tbody.innerHTML = "";
 
-  ordenado.forEach((d, i) => {
-    let row = `
+  dados.forEach((d, i) => {
+    tbody.innerHTML += `
       <tr>
         <td>${i + 1}</td>
         <td>${d.setor}</td>
         <td>${d.casos}</td>
       </tr>
     `;
-    tbody.innerHTML += row;
+  });
+}
+
+// GRÁFICO
+function criarGrafico() {
+  const ctx = document.getElementById("grafico");
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: dados.map(d => d.setor),
+      datasets: [{
+        label: "Casos de Dengue",
+        data: dados.map(d => d.casos)
+      }]
+    }
   });
 }
